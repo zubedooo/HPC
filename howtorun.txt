@@ -1,0 +1,16 @@
+OpenMP
+cc -fopenmp file.c
+./a.out
+
+MPI
+mpicc file.c
+mpirun -np 4 a.out
+
+CUDA
+nvcc file.cu
+./a.out
+
+If CUDA requires telnet,
+telnet 172.1.30.15
+Username:mpicuda001
+Password:cuda19
