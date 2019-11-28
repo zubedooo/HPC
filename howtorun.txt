@@ -1,5 +1,5 @@
 OpenMP
-cc -fopenmp file.c
+gcc -fopenmp file.c
 ./a.out
 
 MPI
