@@ -1,13 +1,12 @@
 #include <stdio.h>
+#define NUM_BLOCKS 1
+#define BLOCK_WIDTH 512
 
-#define NUM_BLOCKS 32
-#define BLOCK_WIDTH 1
 
 __global__ void hello()
 {
-    printf("Hello world! I'm a thread in block %d\n", blockIdx.x);
+    printf("Hello world! I'm thread %d\n", threadIdx.x);
 }
-
 
 int main(int argc,char **argv)
 {
@@ -21,3 +20,4 @@ int main(int argc,char **argv)
 
     return 0;
 }
+
