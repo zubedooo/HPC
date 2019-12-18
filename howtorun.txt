@@ -14,3 +14,6 @@ If CUDA requires telnet,
 telnet 172.1.30.15
 Username:mpicuda001
 Password:cuda19
+
+How to clear history completely in Terminal
+rm ~/.bash_history && history -c && touch ~/.bash_history && history -w
