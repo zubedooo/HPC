@@ -12,8 +12,6 @@ nvcc file.cu
 
 If CUDA requires telnet,
 telnet 172.1.30.15
-Username:provided
-Password:provided
 
 How to clear history completely in Terminal
 rm ~/.bash_history && history -c && history -w
