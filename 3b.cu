@@ -15,11 +15,8 @@ __global__ void SM(float *array)
 {
 	int i, index = threadIdx.x;
 	float average, sum = 0.0f;
-
      	__shared__ float sh_arr[128];
-
 	sh_arr[index] = array[index];
-
 	__syncthreads();
 
 for (i=0; i<index; i++) 
@@ -27,10 +24,11 @@ for (i=0; i<index; i++)
 sum += sh_arr[i]; 
 }
 	average = sum / (index + 1.0f);
-
 	printf("Thread id = %d\t Average = %f\n",index,average);
 
-	if (array[index] > average) { array[index] = average; }
+	if (array[index] > average) 
+	{array[index] = average; }
+	
 	sh_arr[index] = 3.14;
 }
 
@@ -48,6 +46,6 @@ cudaMemcpy((void *)h_arr, (void *)d_arr, sizeof(float) * 128, cudaMemcpyDeviceTo
 SM<<<1, 128>>>(d_arr);
 cudaMemcpy((void *)h_arr, (void *)d_arr, sizeof(float) * 128, cudaMemcpyHostToDevice);
 
-    	cudaDeviceSynchronize();
+	cudaDeviceSynchronize();
 	return 0;
 }
