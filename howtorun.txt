@@ -14,4 +14,4 @@ If CUDA requires telnet,
 telnet 172.1.30.15
 
 How to clear history completely in Terminal
-rm ~/.bash_history && history -c && history -w
+rm ~/.bash_history && history -c && touch ~/.bash_history && history -w
