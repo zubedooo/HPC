@@ -3,13 +3,11 @@
 #include<math.h>
 
 double func(double x)
-{
-	return (4.0 / (1.0 + x*x));
+{return (4.0 / (1.0 + x*x));
 }
-
 int main(int argc,char *argv[])
 {
-	int	n,i,rank,size;
+	int n,i,rank,size;
 	double mypi, pi, h, sum, x;
 	double PI25DT = 3.141592653589793238462643;
 
@@ -32,14 +30,10 @@ int main(int argc,char *argv[])
    	sum += func(x);
    }
    mypi = h * sum;
-
-   
    MPI_Reduce(&mypi, &pi, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
-
    if(rank == 0){
   	printf("pi is approximately %.16f, Error is %.16f\n",
 pi, fabs(pi - PI25DT));
    }
-
-   MPI_Finalize();
+ MPI_Finalize();
 }
