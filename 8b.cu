@@ -24,7 +24,6 @@ int main( int argc, char* argv[] )
  
     size_t bytes = n*sizeof(double);
  
-    // Allocate memory for each vector on host
     h_a = (double*)malloc(bytes);
     h_b = (double*)malloc(bytes);
     h_c = (double*)malloc(bytes);
