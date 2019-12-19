@@ -1,46 +1,37 @@
-#include <stdio.h>
-#include <malloc.h>
+#include<stdio.h>
+#include<stdlib.h>
 #include <omp.h>
 
-long long factorial(long n)
+long long fac(int n)
 {
-long long i,out;
-out = 1;
-for (i=1; i<n+1; i++) out *= i;
-return(out);
+long out =1 ;
+for(int i =1  ; i< n+1 ; i++) out *= i;
+return out;
 }
 
-int main(int argc, char **argv)
-{
-int i,j,threads;
-long long *x;
-long long n=12;
-
-/* Set number of threads equal to argv[1] if present */
-if (argc > 1)
-{
-threads = atoi(argv[1]);
-if (omp_get_dynamic())
+int main(int argc,char *argv[])
 {
 omp_set_dynamic(0);
-printf("called omp_set_dynamic(0)\n");
-}
-omp_set_num_threads(threads);
-}
-printf("%d threads\n",omp_get_max_threads());
+omp_set_num_threads(4);
+long long *x;
+long long n = 9;
 
-x = (long long *) malloc(n * sizeof(long));
-for (i=0;i<n;i++) x[i]=factorial(i);
-j=0;
-/* Is the output the same if the following line is commented out? */
-#pragma omp parallel for firstprivate(x,j)
-for (i=1; i<n; i++)
+x = (long long *) malloc(sizeof(long) * n);
+
+for(int i = 0 ; i <n ; i++)
+x[i] = fac(i);
+
+int j =0;
+#pragma omp parallel for firstprivate(j,x)
+ for (int i =0; i<n ; i++)
 {
-j += i;
-x[i] = j*x[i-1];
+j =j +1;
+x[i] = j * x[i-1];
 }
-for (i=0; i<n; i++)
-printf("factorial(%2d)=%14lld x[%2d]=%14lld\n",i,factorial(i),i,x[i]);
-return 0;
 
+for(int i = 0 ; i <n ; i++)
+printf("fac(%d) = %lld \n",i,fac(i));
+printf("*********** \n");
+for(int i = 0 ; i <n+1 ; i++)
+printf("x[%d] = %lld  \n",i,x[i]);
 }
