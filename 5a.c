@@ -10,9 +10,7 @@ int main (int argc, char *argv[])
 {
 int
 tid, nthreads, i, j, k, chunk;
-double a[NRA][NCA],
-b[NCA][NCB],
-c[NRA][NCB];
+double a[NRA][NCA],b[NCA][NCB],c[NRA][NCB];
 
 chunk = 10;
 
